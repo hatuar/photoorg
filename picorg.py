@@ -6,6 +6,7 @@
 import sys, argparse
 from pathlib import Path
 from PIL import Image,ExifTags
+import shutil
 
 def getExifCode(tagName):
     """ Returns an Exif Code for given tag name (string). """
@@ -66,7 +67,7 @@ for path in pathlist:
         destFolder.mkdir(parents=True, exist_ok=True)
     if img.mode in ("RGBA", "P"):
         img = img.convert("RGB")
-    img.save(destFolder / destFileName)
+    shutil.copy(path, destFolder / destFileName)
 
 
 
